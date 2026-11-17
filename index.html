@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Squishy ASMR World</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff0f7;
+  color: #81566e;
+  text-align: center;
+}
+
+header {
+  background: linear-gradient(120deg,#ffadd1,#dcb8ff);
+  padding: 25px;
+  color: white;
+}
+
+header h1 {
+  font-size: 36px;
+  margin: 5px;
+}
+
+header p {
+  font-size: 16px;
+}
+
+h2 {
+  color: #d66fa7;
+}
+
+.categories {
+  margin: 20px;
+}
+
+button {
+  border: none;
+  border-radius: 18px;
+  padding: 12px 18px;
+  margin: 5px;
+  background: #ffacd0;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e987b5;
+}
+
+.shop {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(145px,1fr));
+  gap: 15px;
+  max-width: 850px;
+  padding: 15px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  border-radius: 25px;
+  padding: 18px 10px;
+  box-shadow: 0 5px 12px #eac9dc;
+}
+
+.squishy {
+  font-size: 75px;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.4s cubic-bezier(.2,.8,.3,1.4);
+}
+
+.squishy:active,
+.squishy.squeeze {
+  transform: scale(1.35,.65) rotate(-8deg);
+}
+
+.card p {
+  font-weight: bold;
+}
+
+#status {
+  font-size: 19px;
+  min-height: 30px;
+  color: #c65c9a;
+  margin: 15px;
+}
+
+.panel {
+  background: white;
+  border-radius: 25px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  box-shadow: 0 5px 12px #eac9dc;
+}
+
+input {
+  accent-color: #e987b5;
+}
+
+footer {
+  background: #ffadd1;
+  color: white;
+  padding: 20px;
+  margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎀 Squishy ASMR World 🎀</h1>
+  <p>Click, squeeze and relax! 🫧</p>
+</header>
+
+<h2>🧸 Kies jouw squishy!</h2>
+
+<div class="categories">
+  <button onclick="filter('all')">Alle squishy's</button>
+  <button onclick="filter('fruit')">🍓 Fruit</button>
+  <button onclick="filter('animal')">🐱 Dieren</button>
+  <button onclick="filter('food')">🍩 Food</button>
+</div>
+
+<div class="shop">
+
+  <div class="card" data-category="fruit">
+    <div class="squishy" onclick="squeeze(this,'Aardbei')">🍓</div>
+    <p>Strawberry</p>
+    <button onclick="squeeze(this.previousElementSibling,'Strawberry')">SQUISH!</button>
+  </div>
+
+  <div class="card" data-category="animal">
+    <div class="squishy" onclick="squeeze(this,'Kat')">🐱</div>
+    <p>Kitty</p>
+    <button onclick="squeeze(this.previousElementSibling,'Kitty')">SQUISH!</button>
+  </div>
+
+  <div class="card" data-category="food">
+    <div class="squishy" onclick="squeeze(this,'Donut')">🍩</div>
+    <p>Donut</p>
+    <button onclick="squeeze(this.previousElementSibling,'Donut')">SQUISH!</button>
+  </div>
+
+  <div class="card" data-category="fruit">
+    <div class="squishy" onclick="squeeze(this,'Watermeloen')">🍉</div>
+    <p>Watermelon</p>
+    <button onclick="squeeze(this.previousElementSibling,'Watermelon')">SQUISH!</button>
+  </div>
+
+  <div class="card" data-category="animal">
+    <div class="squishy" onclick="squeeze(this,'Kikker')">🐸</div>
+    <p>Frog</p>
+    <button onclick="squeeze(this.previousElementSibling,'Frog')">SQUISH!</button>
+  </div>
+
+  <div class="card" data-category="food">
+    <div class="squishy" onclick="squeeze(this,'Cupcake')">🧁</div>
+    <p>Cupcake</p>
+    <button onclick="squeeze(this.previousElementSibling,'Cupcake')">SQUISH!</button>
+  </div>
+
+  <div class="card" data-category="animal">
+    <div class="squishy" onclick="squeeze(this,'Eend')">🐥</div>
+    <p>Duck</p>
+    <button onclick="squeeze(this.previousElementSibling,'Duck')">SQUISH!</button>
+  </div>
+
+  <div class="card" data-category="fruit">
+    <div class="squishy" onclick="squeeze(this,'Perzik')">🍑</div>
+    <p>Peach</p>
+    <button onclick="squeeze(this.previousElementSibling,'Peach')">SQUISH!</button>
+  </div>
+
+  <div class="card" data-category="food">
+    <div class="squishy" onclick="squeeze(this,'IJsje')">🍦</div>
+    <p>Ice Cream</p>
+    <button onclick="squeeze(this.previousElementSibling,'Ice Cream')">SQUISH!</button>
+  </div>
+
+</div>
+
+<div class="panel">
+  <h2>🫧 Squishy ASMR studio</h2>
+  <p id="status">Kies een squishy om te beginnen!</p>
+  <p>🔊 Geluidsvolume</p>
+  <input id="volume" type="range" min="0" max="100" value="40">
+  <br><br>
+  <button onclick="soundOn()">🔊 Geluid aan</button>
+  <button onclick="soundOff()">🔇 Geluid uit</button>
+  <p>⭐ Squishes: <span id="count">0</span></p>
+</div>
+
+<footer>
+  🎀 Squishy ASMR World 🎀
+  <p>Made for squishy lovers! 💗</p>
+</footer>
+
+<script>
+let count = 0;
+let audio;
+let soundEnabled = true;
+
+function filter(category) {
+  document.querySelectorAll(".card").forEach(card => {
+    card.style.display =
+      category === "all" ||
+      card.dataset.category === category
+      ? "block" : "none";
+  });
+}
+
+function soundOn() {
+  soundEnabled = true;
+  document.getElementById("status").textContent =
+    "🔊 Geluid staat aan!";
+}
+
+function soundOff() {
+  soundEnabled = false;
+  document.getElementById("status").textContent =
+    "🔇 Geluid staat uit!";
+}
+
+function squeeze(element, name) {
+  element.classList.remove("squeeze");
+  void element.offsetWidth;
+  element.classList.add("squeeze");
+
+  setTimeout(() => {
+    element.classList.remove("squeeze");
+  }, 450);
+
+  count++;
+  document.getElementById("count").textContent = count;
+
+  document.getElementById("status").textContent =
+    "🫧 Squishing " + name + "!";
+
+  if (soundEnabled) {
+    playSquish();
+  }
+}
+
+function playSquish() {
+  const AudioContext =
+    window.AudioContext || window.webkitAudioContext;
+
+  if (!AudioContext) return;
+
+  audio = audio || new AudioContext();
+  audio.resume();
+
+  const oscillator = audio.createOscillator();
+  const gain = audio.createGain();
+
+  oscillator.type = "sine";
+  oscillator.frequency.setValueAtTime(
+    180, audio.currentTime
+  );
+  oscillator.frequency.exponentialRampToValueAtTime(
+    65, audio.currentTime + 0.16
+  );
+
+  let volume =
+    document.getElementById("volume").value / 100;
+
+  gain.gain.setValueAtTime(
+    volume * 0.22, audio.currentTime
+  );
+  gain.gain.exponentialRampToValueAtTime(
+    0.001, audio.currentTime + 0.2
+  );
+
+  oscillator.connect(gain);
+  gain.connect(audio.destination);
+
+  oscillator.start();
+  oscillator.stop(audio.currentTime + 0.2);
+}
+</script>
+
+</body>
+</html>
